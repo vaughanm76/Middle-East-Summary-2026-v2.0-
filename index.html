@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Civil Aviation Intelligence Timeline · Weeks 8–17, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400&family=JetBrains+Mono:wght@400;500;700&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0c1014;
+    --paper: #f4efe6;
+    --paper-2: #ebe4d6;
+    --rule: #1a2028;
+    --muted: #5a5247;
+    --accent: #c8412b;        /* alert red */
+    --accent-2: #d4a017;      /* watch amber */
+    --accent-3: #2d5a3f;      /* stable green */
+    --accent-4: #1f3a5f;      /* policy navy */
+    --accent-5: #6b4a8f;      /* civil unrest purple */
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 400;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(200,65,43,0.04) 0%, transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(31,58,95,0.05) 0%, transparent 50%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='2' /></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/></svg>");
+    min-height: 100vh;
+  }
+
+  .wrap {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 64px 48px 120px;
+  }
+
+  /* ---------------- HEADER ---------------- */
+  header {
+    border-top: 3px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    padding: 18px 0 24px;
+    margin-bottom: 56px;
+    position: relative;
+  }
+
+  .masthead {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  .masthead .classification {
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(38px, 6vw, 76px);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+
+  h1 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent);
+  }
+
+  .subtitle {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 22px;
+    color: var(--muted);
+    max-width: 800px;
+    line-height: 1.4;
+  }
+
+  .meta-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(12,16,20,0.15);
+  }
+
+  .meta-cell .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .meta-cell .value {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 400;
+  }
+
+  /* ---------------- LEGEND ---------------- */
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px 36px;
+    padding: 20px 24px;
+    background: var(--paper-2);
+    border: 1px solid rgba(12,16,20,0.12);
+    margin-bottom: 64px;
+  }
+
+  .legend-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+    width: 100%;
+    margin-bottom: 4px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    font-family: 'Inter Tight', sans-serif;
+  }
+
+  .legend-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+  .dot-1 { background: var(--accent); }
+  .dot-2 { background: var(--accent-2); }
+  .dot-3 { background: var(--accent-4); }
+  .dot-4 { background: var(--accent-5); }
+  .dot-5 { background: var(--accent-3); }
+
+  /* ---------------- TIMELINE ---------------- */
+  .timeline {
+    position: relative;
+    padding-left: 0;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 200px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--ink) 4%, var(--ink) 96%, transparent);
+  }
+
+  .week {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 56px;
+    margin-bottom: 80px;
+    position: relative;
+  }
+
+  .week-marker {
+    position: relative;
+    text-align: right;
+    padding-right: 32px;
+  }
+
+  .week-marker::after {
+    content: '';
+    position: absolute;
+    right: -6px;
+    top: 12px;
+    width: 13px;
+    height: 13px;
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    border-radius: 50%;
+    z-index: 2;
+  }
+
+  .week-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+  }
+
+  .week-date {
+    font-family: 'Fraunces', serif;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 1;
+    margin-top: 8px;
+    letter-spacing: -0.01em;
+  }
+
+  .week-date .month {
+    font-style: italic;
+    color: var(--accent);
+    display: block;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-top: 8px;
+    font-style: normal;
+    font-weight: 500;
+  }
+
+  .week-events {
+    padding-top: 4px;
+  }
+
+  .pivot-banner {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 14px 20px;
+    margin-bottom: 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 4px solid var(--accent);
+  }
+
+  .pivot-banner .pulse {
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(1.4); }
+  }
+
+  .event {
+    border-left: 3px solid var(--accent-4);
+    padding: 0 0 16px 20px;
+    margin-bottom: 18px;
+    transition: transform 0.3s ease;
+  }
+
+  .event:hover {
+    transform: translateX(4px);
+  }
+
+  .event.cat-1 { border-left-color: var(--accent); }
+  .event.cat-2 { border-left-color: var(--accent-2); }
+  .event.cat-3 { border-left-color: var(--accent-4); }
+  .event.cat-4 { border-left-color: var(--accent-5); }
+  .event.cat-5 { border-left-color: var(--accent-3); }
+
+  .event-tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    padding: 3px 8px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .event-tag.cat-1 { background: var(--accent); }
+  .event-tag.cat-2 { background: var(--accent-2); color: var(--ink); }
+  .event-tag.cat-3 { background: var(--accent-4); }
+  .event-tag.cat-4 { background: var(--accent-5); }
+  .event-tag.cat-5 { background: var(--accent-3); }
+
+  .event-region {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+  }
+
+  .event-headline {
+    font-family: 'Fraunces', serif;
+    font-size: 19px;
+    font-weight: 500;
+    line-height: 1.25;
+    margin: 6px 0 8px;
+    letter-spacing: -0.005em;
+  }
+
+  .event-detail {
+    font-size: 14px;
+    line-height: 1.55;
+    color: #2a2620;
+    max-width: 720px;
+  }
+
+  /* ---------------- THEMATIC SUMMARY ---------------- */
+  .themes {
+    margin-top: 100px;
+    padding-top: 56px;
+    border-top: 3px solid var(--ink);
+  }
+
+  .themes h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: 48px;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+
+  .themes h2 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .themes-intro {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--muted);
+    max-width: 700px;
+    margin-bottom: 48px;
+  }
+
+  .theme-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: rgba(12,16,20,0.15);
+    border: 1px solid rgba(12,16,20,0.15);
+  }
+
+  .theme-card {
+    background: var(--paper);
+    padding: 32px 28px;
+    transition: background 0.3s ease;
+  }
+
+  .theme-card:hover {
+    background: var(--paper-2);
+  }
+
+  .theme-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    margin-bottom: 12px;
+    letter-spacing: 0.15em;
+  }
+
+  .theme-title {
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 14px;
+    letter-spacing: -0.01em;
+  }
+
+  .theme-body {
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: #2a2620;
+  }
+
+  /* ---------------- FOOTER ---------------- */
+  footer {
+    margin-top: 80px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(12,16,20,0.2);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  /* ---------------- RESPONSIVE ---------------- */
+  @media (max-width: 880px) {
+    .wrap { padding: 40px 24px 80px; }
+    .meta-row { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .timeline::before { left: 12px; }
+    .week { grid-template-columns: 1fr; gap: 18px; }
+    .week-marker { text-align: left; padding-left: 36px; padding-right: 0; }
+    .week-marker::after { left: 6px; right: auto; top: 8px; }
+    .week-date { font-size: 26px; }
+    .theme-grid { grid-template-columns: 1fr; }
+    h1 { font-size: 42px; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- ============ HEADER ============ -->
+    <header>
+      <div class="masthead">
+        <span>Source · Dragonfly SIAS Civil Aviation Briefings</span>
+        <span class="classification">Internal Briefing</span>
+        <span>Compiled 28 April 2026</span>
+      </div>
+      <h1>Skies in <em>Flux</em>.<br>A Ten-Week Timeline.</h1>
+      <p class="subtitle">From the eve of the Iran war to the fragile ceasefire — how civil aviation absorbed ten weeks of conflict, fuel disruption, terrorism risk, and operational stress.</p>
+
+      <div class="meta-row">
+        <div class="meta-cell">
+          <div class="label">Period</div>
+          <div class="value">20 Feb — 24 Apr 2026</div>
+        </div>
+        <div class="meta-cell">
+          <div class="label">Coverage</div>
+          <div class="value">Weeks 08 — 17</div>
+        </div>
+        <div class="meta-cell">
+          <div class="label">Briefings</div>
+          <div class="value">10 weekly editions</div>
+        </div>
+        <div class="meta-cell">
+          <div class="label">Inflection point</div>
+          <div class="value">28 February — strikes begin</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ============ LEGEND ============ -->
+    <div class="legend">
+      <span class="legend-title">Threat Categories</span>
+      <div class="legend-item"><span class="legend-dot dot-1"></span>Conflict & airspace closure</div>
+      <div class="legend-item"><span class="legend-dot dot-2"></span>Fuel & supply chain</div>
+      <div class="legend-item"><span class="legend-dot dot-3"></span>Regulatory & operational</div>
+      <div class="legend-item"><span class="legend-dot dot-4"></span>Terrorism & insider threat</div>
+      <div class="legend-item"><span class="legend-dot dot-5"></span>Environmental & weather</div>
+    </div>
+
+    <!-- ============ TIMELINE ============ -->
+    <div class="timeline">
+
+      <!-- ============ WEEK 08 ============ -->
+      <div class="week">
+        <div class="week-marker">
+          <div class="week-num">Week 08</div>
+          <div class="week-date">20 Feb<span class="month">Pre-war posture</span></div>
+        </div>
+        <div class="week-events">
+          <div class="event cat-1">
+            <span class="event-tag cat-1">Iran</span><span class="event-region">Middle East</span>
+            <h3 class="event-headline">US strikes against Iran assessed as likely within weeks</h3>
+            <p class="event-detail">Several dozen US aircraft and air defence systems redeployed into theatre. Indirect Geneva talks on 17 February yielded no narrowing of positions. A sustained US operation lasting several days assessed as plausible.</p>
+          </div>
+          <div class="event cat-3">
+            <span class="event-tag cat-3">USA</span><span class="event-region">North America</span>
+            <h3 class="event-headline">Partial US government shutdown begins, 14 February</h3>
+            <p class="event-detail">Airport security checkpoint workers unpaid. No major disruption yet, but unplanned absences expected to compound after several weeks based on past shutdowns.</p>
+          </div>
+          <div class="event cat-3">
+            <span class="event-tag cat-3">Italy</span><span class="event-region">Europe</span>
+            <h3 class="event-headline">24-hour transport sector strike called for 26 February</h3>
+            <p class="event-detail">Major union plus airline, airport and ground staff unions striking concurrently. A comparable strike in September 2025 produced 70+ cancellations across Bologna, Florence, Milan and Naples.</p>
+          </div>
+          <div class="event cat-4">
+            <span class="event-tag cat-4">Somalia</span><span class="event-region">East Africa</span>
+            <h3 class="event-headline">Al-Shabaab attack on Mogadishu airport possible ahead of May–June elections</h3>
+            <p class="event-detail">Group struck the airport and adjacent military facility five times in 2025. Most likely method: mortar strike.</p>
+          </div>
+          <div class="event cat-5">
+            <span class="event-tag cat-5">Nepal</span><span class="event-region">South Asia</span>
+            <h3 class="event-headline">Wildfire season opens 1 March — visibility impacts expected through May</h3>
+            <p class="event-detail">Crop burning combined with winter smog. In 2025 poor visibility closed Pokhara airport for several days.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ WEEK 09 ============ -->
+      <div class="week">
+        <div class="week-marker">
+          <div class="week-num">Week 09</div>
+          <div class="week-date">27 Feb<span class="month">D-1</span></div>
+        </div>
+        <div class="week-events">
+          <div class="event cat-1">
+            <span class="event-tag cat-1">Iran</span><span class="event-region">Middle East</span>
+            <h3 class="event-headline">Strike imminent: second carrier in eastern Mediterranean</h3>
+            <p class="event-detail">US authorises departure of non-essential staff from Israel on 27 February. Hezbollah signals it would intervene militarily if Khamenei is targeted; Lebanese FM warns Beirut Rafic Hariri International Airport "might" be struck in retaliation.</p>
+          </div>
+          <div class="event cat-1">
+            <span class="event-tag cat-1">Pakistan/AFG</span><span class="event-region">South Asia</span>
+            <h3 class="event-headline">Pakistan strikes Kabul, Kandahar, Paktia on 27 February</h3>
+            <p class="event-detail">Retaliation for Afghan offensive. Civilian planes continue overflying Afghanistan above 30,000ft and operating out of Kabul, per online flight trackers.</p>
+          </div>
+          <div class="event cat-1">
+            <span class="event-tag cat-1">Mexico</span><span class="event-region">Latin America</span>
+            <h3 class="event-headline">Jalisco cartel violence suspends Guadalajara, Puerto Vallarta flights, 22–23 Feb</h3>
+            <p class="event-detail">Authorities seized "rocket launchers capable of shooting down aircraft" from CJNG. No evidence of intent against civil aircraft; capability assessed as present at low altitudes.</p>
+          </div>
+          <div class="event cat-4">
+            <span class="event-tag cat-4">Myanmar</span><span class="event-region">Southeast Asia</span>
+            <h3 class="event-headline">Drone strikes flight on the ground at Myitkyina, 20 February</h3>
+            <p class="event-detail">Anti-junta drone reportedly downed by authorities and hit the plane. Co-located civil-military airfields highlighted as exposure points; no signs anti-junta groups intend to target civilian aircraft.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ INFLECTION ============ -->
+      <div class="pivot-banner">
+        <span>28 February 2026 — US & Israel commence strikes on Iran</span>
+        <span class="pulse"></span>
+      </div>
+
+      <!-- ============ WEEK 10 ============ -->
+      <div class="week">
+        <div class="week-marker">
+          <div class="week-num">Week 10</div>
+          <div class="week-date">06 Mar<span class="month">War opens</span></div>
+        </div>
+        <div class="week-events">
+          <div class="event cat-1">
+            <span class="event-tag cat-1">Middle East</span><span class="event-region">Gulf · Levant</span>
+            <h3 class="event-headline">Hundreds of drones and missiles fired by Iran since 28 Feb</h3>
+            <p class="event-detail">Targeting US bases, interests and energy infrastructure across Arab Gulf states. Coastal airspace largely closed; Israel strikes southern Beirut, southern Lebanon and Bekaa Valley.</p>
+          </div>
+          <div class="event cat-1">
+            <span class="event-tag cat-1">UAE</span><span class="event-region">Gulf</span>
+            <h3 class="event-headline">Emirates and Etihad announce limited resumption</h3>
+            <p class="event-detail">Emirates plans return to 100% of network in coming days. Flight paths avoid coastal areas where Iranian strikes are concentrated and skirt military sites.</p>
+          </div>
+          <div class="event cat-1">
+            <span class="event-tag cat-1">Lebanon</span><span class="event-region">Levant</span>
+            <h3 class="event-headline">Beirut Airport operational but evacuation routes constricted</h3>
+            <p class="event-detail">Israeli strikes ordered in Dahiyeh, where Highway 51 (the main airport route) runs. MEA appears to be the only carrier flying; many flights sold out.</p>
+          </div>
+          <div class="event cat-2">
+            <span class="event-tag cat-2">Global</span><span class="event-region">Worldwide</span>
+            <h3 class="event-headline">Strait of Hormuz effectively blockaded — fuel disruption looms</h3>
+            <p class="event-detail">Iranian blockade disrupts shipments of jet fuel and crude. Europe assessed as most exposed to prolonged shortage.</p>
+          </div>
+          <div class="event cat-1">
+            <span class="event-tag cat-1">Azerbaijan</span><span class="event-region">Caucasus</span>
+            <h3 class="event-headline">Drones strike Nakhchivan International Airport, 5 March</h3>
+            <p class="event-detail">Four drones entered Azerbaijani airspace; two struck the airport and an adjacent school. Footage suggests Iranian make. Iran denied responsibility.</p>
+          </div>
+          <div class="event cat-3">
+            <span class="event-tag cat-3">Haiti</span><span class="event-region">Caribbean</span>
+            <h3 class="event-headline">US ban on landings in Port-au-Prince extended to 3 September</h3>
+            <p class="event-detail">Ban first imposed 2024 after three US carriers struck by gunfire. Zed Airlines suspended Port-au-Prince operations in late January.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ WEEK 11 ============ -->
+      <div class="week">
+        <div class="week-marker">
+          <div class="week-num">Week 11</div>
+          <div class="week-date">13 Mar<span class="month">Attrition</span></div>
+        </div>
+        <div class="week-events">
+          <div class="event cat-1">
+            <span class="event-tag cat-1">Middle East</span><span class="event-region">Gulf</span>
+            <h3 class="event-headline">Iran capable of sustaining strikes for at least a month</h3>
+            <p class="event-detail">Drone and missile launches against Saudi Arabia surge from 7 (10 March) to 58 (12 March). Riyadh airspace closures expected during overnight defence firings.</p>
+          </div>
+          <div class="event cat-1">
+            <span class="event-tag cat-1">UAE</span><span class="event-region">Gulf</span>
+            <h3 class="event-headline">Four debris-impact incidents around Abu Dhabi and Dubai airports since 7 March</h3>
+            <p class="event-detail">Risk highest at Abu Dhabi due to co-location with an Emirati air base. No evidence Iran targets airports directly; debris from interceptions of nearby Iranian projectiles.</p>
+          </div>
+          <div class="event cat-3">
+            <span class="event-tag cat-3">USA</span><span class="event-region">North America</span>
+            <h3 class="event-headline">Hours-long delays at Charlotte, Houston, New Orleans</h3>
+            <p class="event-detail">Compound effect of unpaid security workers; lawmakers remain split on immigration agency reforms tied to the shutdown.</p>
+          </div>
+          <div class="event cat-2">
+            <span class="event-tag cat-2">Global</span><span class="event-region">Air cargo</span>
+            <h3 class="event-headline">Air cargo capacity down 22% in first week of war</h3>
+            <p class="event-detail">Limited operations at Doha and Dubai dragging the global figure. Jet fuel prices have doubled since 28 February. South Asia–Europe routes hit hardest.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ WEEK 12 ============ -->
+      <div class="week">
+        <div class="week-marker">
+          <div class="week-num">Week 12</div>
+          <div class="week-date">20 Mar<span class="month">Spillover</span></div>
+        </div>
+        <div class="week-events">
+          <div class="event cat-1">
+            <span class="event-tag cat-1">UAE</span><span class="event-region">Gulf</span>
+            <h3 class="event-headline">Drone hits Dubai airport fuel tank, 16 March</h3>
+            <p class="event-detail">Fourth drone or debris incident near a major UAE airport since the war began. Iran appears to be targeting US military and radar facilities adjacent to civilian airports.</p>
+          </div>
+          <div class="event cat-1">
+            <span class="event-tag cat-1">Pakistan/AFG</span><span class="event-region">South Asia</span>
+            <h3 class="event-headline">Afghan drones strike Pakistani cities, 13 March; Islamabad airspace briefly closed</h3>
+            <p class="event-detail">Tit-for-tat strikes accelerating. UK aviation authorities issue NOTAM warning of heightened military activity in Kabul.</p>
+          </div>
+          <div class="event cat-2">
+            <span class="event-tag cat-2">Europe</span><span class="event-region">Continent-wide</span>
+            <h3 class="event-headline">Kerosene prices up nearly 90% since February</h3>
+            <p class="event-detail">Some carriers have raised fares or cancelled flights. Most European carriers say current-year supply is adequate; widespread cancellations not expected this month.</p>
+          </div>
+          <div class="event cat-5">
+            <span class="event-tag cat-5">Kenya</span><span class="event-region">East Africa</span>
+            <h3 class="event-headline">Heavy rains divert Nairobi-bound Kenya Airways flights to Mombasa, 7 March</h3>
+            <p class="event-detail">Rainy season delays expected to extend through May, possibly into June this year per local met agencies.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ WEEK 13 ============ -->
+      <div class="week">
+        <div class="week-marker">
+          <div class="week-num">Week 13</div>
+          <div class="week-date">27 Mar<span class="month">Cargo squeeze</span></div>
+        </div>
+        <div class="week-events">
+          <div class="event cat-1">
+            <span class="event-tag cat-1">Qatar</span><span class="event-region">Gulf</span>
+            <h3 class="event-headline">Iran halts attacks on Qatar; Qatar Airways increases frequencies, 27 March</h3>
+            <p class="event-detail">No recorded Iranian attacks on Qatar since 20 March. Doha hosts US forces and remains a plausible future target.</p>
+          </div>
+          <div class="event cat-2">
+            <span class="event-tag cat-2">Asia</span><span class="event-region">Region-wide</span>
+            <h3 class="event-headline">Vietnam, Philippines warn of route cuts and possible groundings</h3>
+            <p class="event-detail">Carriers cutting short, low-margin routes first. Longer routes including Europe-bound at risk if Hormuz disruption persists for months.</p>
+          </div>
+          <div class="event cat-2">
+            <span class="event-tag cat-2">Sub-Saharan Africa</span><span class="event-region">Continent-wide</span>
+            <h3 class="event-headline">70% of regional jet fuel supply transits Strait of Hormuz</h3>
+            <p class="event-detail">Kenya and South Africa hubs hold roughly a month of reserves. Extended disruption would force route cuts.</p>
+          </div>
+          <div class="event cat-3">
+            <span class="event-tag cat-3">USA</span><span class="event-region">North America</span>
+            <h3 class="event-headline">ICE deployed to airports, 23 March; LaGuardia fire-truck collision, 22 March</h3>
+            <p class="event-detail">Two deaths from "series of failures" at LaGuardia. FAA flags 150 airports with "increased risk" of runway incursions.</p>
+          </div>
+          <div class="event cat-1">
+            <span class="event-tag cat-1">Russia</span><span class="event-region">Eastern Europe</span>
+            <h3 class="event-headline">Ukrainian drone strikes close airports in Kazan, Moscow, Saint Petersburg</h3>
+            <p class="event-detail">Three or more strikes on Baltic-coast oil and gas terminals in past week. Telegram posts suggest Ukrainian drones may have crossed Polish and Baltic airspace.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ WEEK 14 ============ -->
+      <div class="week">
+        <div class="week-marker">
+          <div class="week-num">Week 14</div>
+          <div class="week-date">02 Apr<span class="month">Late escalation</span></div>
+        </div>
+        <div class="week-events">
+          <div class="event cat-3">
+            <span class="event-tag cat-3">USA</span><span class="event-region">North America</span>
+            <h3 class="event-headline">Trump orders back pay for security workers, 30 March</h3>
+            <p class="event-detail">Staff largely returned, wait times improving. Continued funding uncertain; Congress recessed.</p>
+          </div>
+          <div class="event cat-1">
+            <span class="event-tag cat-1">UAE</span><span class="event-region">Gulf</span>
+            <h3 class="event-headline">39 flights at Dubai within minutes of incoming launches since 28 Feb</h3>
+            <p class="event-detail">Per Wall Street Journal, 21 March. Dubai briefly suspends operations 30 March after debris from interception lands nearby.</p>
+          </div>
+          <div class="event cat-1">
+            <span class="event-tag cat-1">Lebanon</span><span class="event-region">Levant</span>
+            <h3 class="event-headline">Hezbollah claims SAM launch at Israeli jet over Beirut, 27 March</h3>
+            <p class="event-detail">Group has downed several Israeli military drones with SAMs since 2023. Continued launches heighten misidentification risk for civilian aircraft.</p>
+          </div>
+          <div class="event cat-2">
+            <span class="event-tag cat-2">UK</span><span class="event-region">Europe</span>
+            <h3 class="event-headline">Last scheduled Gulf jet fuel cargo to UK arriving — 31 March</h3>
+            <p class="event-detail">UK historically imports 55% of kerosene from the Gulf (OPIS). Average of eight cargoes from the Gulf in transit at any one time. Several weeks needed to fully reroute supply chains.</p>
+          </div>
+          <div class="event cat-1">
+            <span class="event-tag cat-1">Nordics/Baltics</span><span class="event-region">Northern Europe</span>
+            <h3 class="event-headline">Three Ukrainian drones crash in Estonia and Finland</h3>
+            <p class="event-detail">Likely caused by Russian electronic warfare. Finnish jets scrambled to drones, 29 March. Misidentification risk over Baltic and Finnish airspace assessed as elevated.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ INFLECTION 2 ============ -->
+      <div class="pivot-banner" style="border-left-color: var(--accent-3);">
+        <span>7–8 April 2026 — Conditional US–Iran ceasefire announced</span>
+        <span class="pulse" style="background: var(--accent-3);"></span>
+      </div>
+
+      <!-- ============ WEEK 15 ============ -->
+      <div class="week">
+        <div class="week-marker">
+          <div class="week-num">Week 15</div>
+          <div class="week-date">10 Apr<span class="month">Fragile pause</span></div>
+        </div>
+        <div class="week-events">
+          <div class="event cat-1">
+            <span class="event-tag cat-1">Middle East</span><span class="event-region">Gulf</span>
+            <h3 class="event-headline">Ceasefire takes effect 7–8 April; Iraq, Bahrain reopen airspace</h3>
+            <p class="event-detail">Reports of multiple Iranian attacks on Gulf states since the ceasefire. WSJ: at least five commercial planes parked in the Gulf damaged by falling shrapnel since 28 February.</p>
+          </div>
+          <div class="event cat-2">
+            <span class="event-tag cat-2">Asia</span><span class="event-region">Region-wide</span>
+            <h3 class="event-headline">Acute jet-fuel shortages in Philippines, Pakistan</h3>
+            <p class="event-detail">Countries with limited refining capacity hit hardest. US and Iran continue to differ on how Hormuz shipping should resume.</p>
+          </div>
+          <div class="event cat-3">
+            <span class="event-tag cat-3">China</span><span class="event-region">East Asia</span>
+            <h3 class="event-headline">Unusually long airspace reservation over Yellow Sea/East China Sea until 6 May</h3>
+            <p class="event-detail">No altitude limit; satellite imagery suggests military exercises. Beijing launched landing drills on Nantian island, Zhejiang, 4 April. Fourth such large reservation in recent years.</p>
+          </div>
+          <div class="event cat-1">
+            <span class="event-tag cat-1">Korea</span><span class="event-region">East Asia</span>
+            <h3 class="event-headline">North Korea conducts three missile launches over Sea of Japan, 7–8 April</h3>
+            <p class="event-detail">Pyongyang signalled intent at Ninth Party Congress to develop weapons systems complementing nuclear capability. Past tests have broken up or veered off course.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ WEEK 16 ============ -->
+      <div class="week">
+        <div class="week-marker">
+          <div class="week-num">Week 16</div>
+          <div class="week-date">17 Apr<span class="month">Fuel crunch</span></div>
+        </div>
+        <div class="week-events">
+          <div class="event cat-1">
+            <span class="event-tag cat-1">Kuwait</span><span class="event-region">Gulf</span>
+            <h3 class="event-headline">Kuwaiti airspace remains closed; airport heavily damaged</h3>
+            <p class="event-detail">Closed since 28 February. Iranian drones reportedly damaged terminal, radar, and fuel tanks at the country's only civilian airport, per state media.</p>
+          </div>
+          <div class="event cat-1">
+            <span class="event-tag cat-1">UAE/Qatar</span><span class="event-region">Gulf</span>
+            <h3 class="event-headline">Emirates and Etihad at ~70% pre-war ops; Qatar Airways above 50%</h3>
+            <p class="event-detail">EASA still advises against operations in UAE and Qatari airspace. Non-Gulf carriers expected to take longer to return.</p>
+          </div>
+          <div class="event cat-2">
+            <span class="event-tag cat-2">Europe</span><span class="event-region">Continent-wide</span>
+            <h3 class="event-headline">IEA chief: Europe has "maybe six weeks" of jet fuel — 16 April</h3>
+            <p class="event-detail">Several major airlines cut short-haul flights. UK, Netherlands, Germany flagged as most exposed due to Gulf import dependency.</p>
+          </div>
+          <div class="event cat-2">
+            <span class="event-tag cat-2">Asia</span><span class="event-region">Region-wide</span>
+            <h3 class="event-headline">Laos, Myanmar, Pakistan, Philippines, Vietnam exposed to fuel-driven cancellations</h3>
+            <p class="event-detail">Limited refining, high import dependence on Gulf or neighbours, low FX reserves. Asian neighbours have halted jet-fuel exports.</p>
+          </div>
+          <div class="event cat-3">
+            <span class="event-tag cat-3">Schengen</span><span class="event-region">Europe</span>
+            <h3 class="event-headline">EES biometric system live since 10 April — three-hour border delays reported</h3>
+            <p class="event-detail">Per Airports Council International Europe. Airlines reportedly leaving without delayed passengers rather than holding flights.</p>
+          </div>
+          <div class="event cat-4">
+            <span class="event-tag cat-4">Nigeria</span><span class="event-region">West Africa</span>
+            <h3 class="event-headline">Leaked memo: jihadists planning attacks near Nnamdi Azikiwe International, Abuja</h3>
+            <p class="event-detail">Government memo dated 13 April flags "credible reports" of planning. Local press: security protocols strengthened from 16 April. Memo not independently verified.</p>
+          </div>
+          <div class="event cat-5">
+            <span class="event-tag cat-5">Colombia</span><span class="event-region">Latin America</span>
+            <h3 class="event-headline">Heavy fog disrupts El Dorado, Bogota, 15 April</h3>
+            <p class="event-detail">Several hours of restricted operations and dozens of countrywide cancellations. Typical for the April–May and September–November rainy seasons.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ WEEK 17 ============ -->
+      <div class="week">
+        <div class="week-marker">
+          <div class="week-num">Week 17</div>
+          <div class="week-date">24 Apr<span class="month">Cumulative strain</span></div>
+        </div>
+        <div class="week-events">
+          <div class="event cat-1">
+            <span class="event-tag cat-1">Gulf</span><span class="event-region">Middle East</span>
+            <h3 class="event-headline">Limited Europe–Asia overflight options remain</h3>
+            <p class="event-detail">Qatar reopens to foreign carriers 20 April; Kuwait flights to resume 26 April. Bahrain approving case-by-case; UAE limited corridors. Foreign-carrier overflights largely uncertain.</p>
+          </div>
+          <div class="event cat-3">
+            <span class="event-tag cat-3">EASA</span><span class="event-region">Europe</span>
+            <h3 class="event-headline">Conflict bulletin renewed until 1 May</h3>
+            <p class="event-detail">Despite ceasefire extension on 21 April, EASA cites "uncertain" implementation requiring "further monitoring".</p>
+          </div>
+          <div class="event cat-2">
+            <span class="event-tag cat-2">Africa</span><span class="event-region">Sub-Saharan</span>
+            <h3 class="event-headline">Nigerian carriers report jet fuel up 270% since February</h3>
+            <p class="event-detail">Carriers in talks with government after threats to suspend operations. Kenya and South Africa carriers also warning of disruption. Small regional carriers most exposed.</p>
+          </div>
+          <div class="event cat-2">
+            <span class="event-tag cat-2">Pacific</span><span class="event-region">Oceania</span>
+            <h3 class="event-headline">Tuvalu, Marshall Islands declare emergency over fuel reserves</h3>
+            <p class="event-detail">Several regional airlines cancelling flights. Multilateral crisis pact on 16 April unlikely to resolve shortages while Hormuz traffic remains constrained.</p>
+          </div>
+          <div class="event cat-2">
+            <span class="event-tag cat-2">Cargo</span><span class="event-region">Worldwide</span>
+            <h3 class="event-headline">Baltic Air Freight Index up 4.2% week ending 19 April</h3>
+            <p class="event-detail">Up 5.1% the week before. Driven by elevated jet fuel and looming supply gaps. Prices unlikely to ease while Hormuz traffic remains near-standstill.</p>
+          </div>
+          <div class="event cat-3">
+            <span class="event-tag cat-3">USA</span><span class="event-region">North America</span>
+            <h3 class="event-headline">Near-miss between two planes near Nashville, 18 April</h3>
+            <p class="event-detail">ATC directed one aircraft into another's path. Per AviatorDB: such incidents up 61% from 410 (2019) to 660 (2025). FAA hiring exceeds targets but attrition and long training cycles delay relief.</p>
+          </div>
+          <div class="event cat-1">
+            <span class="event-tag cat-1">Russia</span><span class="event-region">Eastern Europe</span>
+            <h3 class="event-headline">Ukrainian drones close ~25 Russian airports for hours since last week</h3>
+            <p class="event-detail">Some targets more than 1,000 km from the Ukrainian border. Per Russia's military, Kyiv launched more drones than Moscow in March — the first time since the war began.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ============ THEMATIC SUMMARY ============ -->
+    <div class="themes">
+      <h2>Five threads that <em>defined</em> ten weeks.</h2>
+      <p class="themes-intro">No single event explains the period. These intersecting pressures, taken together, do.</p>
+
+      <div class="theme-grid">
+        <div class="theme-card">
+          <div class="theme-num">01 / Five</div>
+          <div class="theme-title">The 28 February inflection</div>
+          <div class="theme-body">Two weeks of public escalation signalling — carrier deployments, departures of non-essential US personnel, Hezbollah threats — gave way to open conflict. Gulf airspace fragmented immediately. Reopening has been state-by-state, conditional, and reversible.</div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-num">02 / Five</div>
+          <div class="theme-title">Hormuz translates into a global fuel story</div>
+          <div class="theme-body">From Week 10 disruption became the dominant operational risk. Jet fuel doubled by Week 11, up 270% in Nigeria by Week 17. Europe at six weeks of stocks; Pacific Islands declaring emergencies. The conflict's economic shadow now reaches further than its kinetic one.</div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-num">03 / Five</div>
+          <div class="theme-title">Misidentification as the dominant aviation risk</div>
+          <div class="theme-body">No party is targeting civilian aircraft. But debris, interceptions, low-flying defensive systems, and electronic-warfare-induced drone drift across Hormuz, the Baltic, the Caucasus, and the Korean Peninsula make accidental engagement the through-line of operational concern.</div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-num">04 / Five</div>
+          <div class="theme-title">Conflict didn't pause everything else</div>
+          <div class="theme-body">A US shutdown stressed checkpoints and ATC. EES rollout caused three-hour Schengen queues. Pakistan-Afghanistan strikes intensified. Ukrainian drones reached 1,000 km into Russia. The intelligence picture is the war plus everything that didn't stop for it.</div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-num">05 / Five</div>
+          <div class="theme-title">Ceasefire ≠ normalisation</div>
+          <div class="theme-body">The 7–8 April ceasefire reopened some airspace but EASA's bulletin remains active. Kuwait stays closed. Gulf carriers operate at 50–70%. Hormuz traffic at ~5% of pre-war volume. The aviation system is now in a third state — neither war nor peace, with elevated baseline risk.</div>
+        </div>
+
+        <div class="theme-card" style="background: var(--ink); color: var(--paper);">
+          <div class="theme-num" style="color: var(--accent-2);">→ Outlook</div>
+          <div class="theme-title" style="color: var(--paper);">Watch the next thirty days</div>
+          <div class="theme-body" style="color: rgba(244,239,230,0.75);">Three indicators worth tracking: Hormuz tanker traffic recovery, EASA conflict bulletin renewals, and whether Iran resumes attacks on the Gulf during Pakistan-mediated talks. Any of the three reverting will cascade through fuel, cargo, and overflight risk simultaneously.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ FOOTER ============ -->
+    <footer>
+      <span>Compiled from 10 Dragonfly SIAS Civil Aviation Intelligence Summaries</span>
+      <span>Weeks 08–17 · Feb–Apr 2026</span>
+      <span>Internal Reference Only</span>
+    </footer>
+
+  </div>
+</body>
+</html>
